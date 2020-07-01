@@ -143,10 +143,11 @@ function solveSudokuHelper(board, r, c) {
     for (var i = 1; i <= 9; i++) {
         if (isSafe(board, r, c, i)) {
             board[r][c] = i;
-            solveSudokuHelper(board, sr, sc + 1);
+            if(solveSudokuHelper(board, sr, sc + 1)) return true;
             board[r][c] = 0;
         }
     }
+    return false;
 }
 
 function solveSudoku(board) {
