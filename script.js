@@ -97,7 +97,7 @@ button.onclick = function () {
 }
 
 //to be completed by student
-function isPossible(board, sr, sc, val) {
+function isSafe(board, sr, sc, val) {
     for (var row = 0; row < 9; row++) {
         if (board[row][sc] == val) {
             return false;
@@ -125,26 +125,26 @@ function isPossible(board, sr, sc, val) {
 }
 
 //to be completed by student
-function solveSudokuHelper(board, sr, sc) {
-    if (sr == 9) {
+function solveSudokuHelper(board, r, c) {
+    if (r == 9) {
         changeBoard(board);
         return;
     }
-    if (sc == 9) {
-        solveSudokuHelper(board, sr + 1, 0)
+    if (c == 9) {
+        solveSudokuHelper(board, r + 1, 0)
         return;
     }
 
-    if (board[sr][sc] != 0) {
-        solveSudokuHelper(board, sr, sc + 1);
+    if (board[r][c] != 0) {
+        solveSudokuHelper(board, r, c + 1);
         return;
     }
 
     for (var i = 1; i <= 9; i++) {
-        if (isPossible(board, sr, sc, i)) {
-            board[sr][sc] = i;
+        if (isSafe(board, r, c, i)) {
+            board[r][c] = i;
             solveSudokuHelper(board, sr, sc + 1);
-            board[sr][sc] = 0;
+            board[r][c] = 0;
         }
     }
 }
